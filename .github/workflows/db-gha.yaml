@@ -38,7 +38,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Ensure datamodel directory exists
         run: |
-          mkdir -p ${{ github.workspace }}/datamodel
+          mkdir -p ./datamodel
       - name: Setup test database
         run: |
           podman run -d --name oracle \
@@ -46,7 +46,7 @@ jobs:
                      -e ORACLE_RANDOM_PASSWORD=y \
                      -e APP_USER=test \
                      -e APP_USER_PASSWORD=test \
-                     -v ${{ github.workspace }}/datamodel:/container-entrypoint-initdb.d \
+                     -v ./datamodel:/container-entrypoint-initdb.d \
                      gvenzl/oracle-free:slim
           while [[ $(podman logs oracle 2>&1 | grep -c "DATABASE IS READY TO USE") == 0 ]]; do
             sleep 1;
