@@ -63,10 +63,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - run: mkdir ${{ github.workspace }}/database-files
       - uses: gvenzl/setup-oracle-free@v1
         with:
           app-user: test
           app-user-password: test
+          volume: ${{ github.workspace }}/database-files
           setup-scripts: ./datamodel
       - uses: gvenzl/setup-oracle-sqlcl@v1
       # Connect to the database and run a SQL command
