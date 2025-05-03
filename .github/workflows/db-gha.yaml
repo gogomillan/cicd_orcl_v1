@@ -62,8 +62,9 @@ jobs:
   database-action:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
       - run: mkdir ${{ github.workspace }}/database-files
+      - run: mkdir -p ./datamodel
       - uses: gvenzl/setup-oracle-free@v1
         with:
           app-user: test
