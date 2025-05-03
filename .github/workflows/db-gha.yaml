@@ -36,6 +36,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Ensure datamodel directory exists
+        run: |
+          mkdir -p ./datamodel
       - name: Setup test database
         run: |
           podman run -d --name oracle \
