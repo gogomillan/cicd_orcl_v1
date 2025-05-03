@@ -43,7 +43,7 @@ jobs:
                      -e ORACLE_RANDOM_PASSWORD=y \
                      -e APP_USER=test \
                      -e APP_USER_PASSWORD=test \
-                     -v ./datamodel:/container-entrypoint-initdb.d \
+                     -v ${{ github.workspace }}/datamodel:/container-entrypoint-initdb.d \
                      gvenzl/oracle-free:slim
           while [[ $(podman logs oracle 2>&1 | grep -c "DATABASE IS READY TO USE") == 0 ]]; do
             sleep 1;
