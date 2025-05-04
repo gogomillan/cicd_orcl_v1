@@ -1,5 +1,11 @@
 name: db-actions
-on: push
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    branches:
+    - master
 jobs:
   database-via-gha-service:
     runs-on: ubuntu-latest
