@@ -1,5 +1,11 @@
 name: db-actions
-on: push
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    branches:
+    - master
 jobs:
   database-via-gha-service:
     runs-on: ubuntu-latest
@@ -36,9 +42,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Ensure datamodel directory exists
-        run: |
-          mkdir -p ./datamodel
       - name: Setup test database
         run: |
           podman run -d --name oracle \
@@ -64,7 +67,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: mkdir ${{ github.workspace }}/database-files
-      - run: mkdir -p ./datamodel
       - uses: gvenzl/setup-oracle-free@v1
         with:
           app-user: test
