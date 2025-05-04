@@ -42,6 +42,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Initial dir stucture
+        run: |
+          echo "Seeing root dir"
+          ls -al
+          echo "Seeing datamodel"
+          ls -al datamodel
       - name: Setup test database
         run: |
           podman run -d --name oracle \
@@ -61,6 +67,12 @@ jobs:
           echo "SELECT country_code, official_name, population \
           FROM countries WHERE name = 'Austria';" \
           | sql test/test@localhost/FREEPDB1
+      - name: Final dir stucture
+        run: |
+          echo "Seeing root dir"
+          ls -al
+          echo "Seeing datamodel"
+          ls -al datamodel
 
   database-action:
     runs-on: ubuntu-latest
